@@ -1,0 +1,11 @@
+node_modules/
+.cache/
+coverage/
+dist/
+*.log
+.env
+.env.*
+!.env.example
+auth.json
+*.sqlite*
+generated_images/

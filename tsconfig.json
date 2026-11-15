@@ -1,0 +1,21 @@
+{
+    "compilerOptions": {
+        "target": "ES2024",
+        "module": "NodeNext",
+        "moduleResolution": "NodeNext",
+        "lib": ["ES2024", "DOM"],
+        "types": ["node"],
+        "strict": true,
+        "erasableSyntaxOnly": true,
+        "noEmit": true,
+        "skipLibCheck": true,
+        "allowImportingTsExtensions": true,
+        "verbatimModuleSyntax": true,
+        "allowJs": true,
+        "checkJs": true,
+        "noUnusedLocals": true,
+        "noUnusedParameters": true
+    },
+    "include": ["chatgpt-images.ts", "_pocket.d.ts", "scripts/**/*.mjs"],
+    "exclude": ["node_modules", ".cache", "*.test.ts"]
+}

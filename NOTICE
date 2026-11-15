@@ -1,0 +1,13 @@
+ChatGPT Images for Pi Pocket
+
+This project is distributed under the MIT license in LICENSE.
+
+Pi Pocket by Tanner Middleton is also MIT-licensed. This project follows its
+extension examples and usage-accounting patterns. The development integration
+tests use Pi Pocket source at the revision in tooling/pi-pocket.json.
+Pi Pocket copyright and license: LICENSES/pi-pocket-MIT.txt.
+Source: https://github.com/TannerMidd/pi-pocket
+
+Pi Pocket and the Codex CLI are separate projects. This extension is not an
+official OpenAI integration, does not bundle Codex, and does not change the
+licenses or terms of its dependencies.
