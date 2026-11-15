@@ -9,7 +9,7 @@ The owner approved repository `meydjer/pi-pocket-chatgpt-images`, GitHub-profile
 - [x] Exact, project-local dependencies and lockfile; pinned public Pocket fixture `0.28.2` at `992a50a3c27dbd6c3625c9978d3108df5716ac09`.
 - [x] Formatting, strict runtime/tooling/test type checks and lint pass.
 - [x] The public snapshot passed **89 offline tests**, including account/quota/config refusals, unknown CLI versions, model-reroute refusal, queue/restart/cancellation and PNG checks. The local suite adds a completed-turn-without-PNG regression; see the current local verification below.
-- [x] Clean installation of this 1.2.0 candidate passes with empty HOME, fresh npm cache, public Git bootstrap and no provider credentials: formatting, types, lint, **89/89 tests**, and audit with **0 known vulnerabilities**.
+- [x] Clean installation of this 1.2.0 candidate passes with empty HOME, fresh npm cache, public Git bootstrap and no provider credentials: formatting, types, lint, **90/90 tests**, and audit with **0 known vulnerabilities**.
 - [x] Real Pocket **Share** draft checks pass locally: standalone file, complete description within 600 characters, matching declarations and API2.
 - [x] `npm audit` reports **0 known vulnerabilities** for this dependency snapshot.
 - [x] Native Codex0.169.0 accepts the exact production `exec` argv with `--help`, without a turn.
@@ -20,9 +20,9 @@ The owner approved repository `meydjer/pi-pocket-chatgpt-images`, GitHub-profile
 - [x] Independent Sonnet review and follow-up source audit completed. Concrete findings led to effective controls, provider/initial-URL pins, native-version gating and model-reroute refusal. Haiku confirmed public configuration behavior offline.
 - [x] Local Git author configured from the approved public profile and its GitHub noreply address, not a personal email.
 
-## Current local verification
+## Current verification
 
-`npm run validate && npm audit` passes: formatting, types, lint, **90/90 offline tests**, no failures/cancellations/skips, and **0 known vulnerabilities**. This is a local result, not a new public CI run. `git diff --check` passes. The standalone payload remains unchanged at 49,239 bytes and SHA-256 `697772a25f6de91630f21d8fe30cef5b6368dad77389512053a4a5348545b480`; the public pin below is the earlier snapshot, without this local test/documentation update.
+`npm run validate && npm audit` passes locally: formatting, types, lint, **90/90 offline tests**, no failures/cancellations/skips, and **0 known vulnerabilities**. [GitHub CI run 43723345247](https://github.com/meydjer/pi-pocket-chatgpt-images/actions/runs/43723345247) also passes on public commit `cd419d9a18b98a421db8bd1040b0669399dde747`, including the new missing-PNG regression. `git diff --check` passes. The standalone runtime remains unchanged at 49,239 bytes and SHA-256 `697772a25f6de91630f21d8fe30cef5b6368dad77389512053a4a5348545b480`.
 
 ## Live-test outcome — blocked, not a pass
 
@@ -60,11 +60,11 @@ Gallery CI explicitly rejects an entry whose `minPocket` is newer than its basel
 
 ## Pinned package evidence
 
-Pocket Share generated a complete entry with known declarations and no problems. The entry pins public source commit `6c2500775fbf518beba2a9ac7368cd77c82e831c`, API **2**, and conservative `minPocket` **0.28.2**. Its only file is `chatgpt-images.ts`: **49,239 bytes**, SHA-256 `697772a25f6de91630f21d8fe30cef5b6368dad77389512053a4a5348545b480`.
+Pocket Share generated a complete entry with known declarations and no problems. The submitted entry pins public source commit `cd419d9a18b98a421db8bd1040b0669399dde747`, API **2**, and conservative `minPocket` **0.28.2**. Its only file is `chatgpt-images.ts`: **49,239 bytes**, SHA-256 `697772a25f6de91630f21d8fe30cef5b6368dad77389512053a4a5348545b480`.
 
 The unmodified official gallery validator passes locally against Pocket **0.28.2**, both with local files and with the file downloaded from its public pinned GitHub commit. It checks the schema, Pocket reader, names against 21 existing gallery entries, size/hash, isolated module loading and declarations. This does **not** prove compatibility with the gallery's older CI baseline or successful real image generation.
 
-The proposed entry remains local in `.cache/gallery-submission/entries/chatgpt-images.json`. No gallery PR has been opened.
+[Gallery PR #50](https://github.com/TannerMidd/pi-pocket-extensions/pull/50) is open as a **draft**, with both blockers explicit. Its only change is `entries/chatgpt-images.json`: 47 additions, no deletions. No gallery workflow or generated index was changed. The upstream check currently awaits maintainer workflow approval; it has not passed. The local entry copy remains in `.cache/gallery-submission/entries/chatgpt-images.json`.
 
 ## Remaining work
 
@@ -75,4 +75,5 @@ The proposed entry remains local in `.cache/gallery-submission/entries/chatgpt-i
 - [x] Publish the approved initial source commit and verify its successful GitHub CI run.
 - [x] Receive owner authorization for the GitHub CLI `workflow` scope. Preserve the approved noreply author without changing account email/privacy preferences or using a personal commit email.
 - [x] Validate the pinned payload: full public source commit, SHA-256, byte size, API2, conservative `minPocket` and declarations.
-- [ ] Submit only `entries/chatgpt-images.json` to the gallery, clearly describing the live-test limitation and baseline blocker. Do not edit `index.json`.
+- [x] Open draft gallery PR #50 with only `entries/chatgpt-images.json`, clearly describing the live-test limitation and baseline blocker. Do not edit `index.json`.
+- [ ] Obtain maintainer approval for the gallery workflow and a supported baseline update; verify the upstream checks before marking the PR ready. The draft is not a gallery release.
