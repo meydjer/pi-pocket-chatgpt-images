@@ -59,6 +59,8 @@ Quota/account checks and generation are separate operations. Another client or a
 
 ## Development
 
+[GitHub CI passed](https://github.com/meydjer/pi-pocket-chatgpt-images/actions/runs/43715870837) on the pinned 1.2.0 source: formatting, types, lint and **89 offline tests**. The official gallery validator also passed locally on Pocket **0.28.2**, including a download/hash/load check of the public pinned file. Neither check proves real image generation or compatibility with the gallery's older CI baseline.
+
 ```sh
 npm ci --ignore-scripts
 npm run setup:pocket
