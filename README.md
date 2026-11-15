@@ -1,6 +1,6 @@
 # ChatGPT Images for Pi Pocket
 
-> **Candidate 1.2.0, not a validated public release.** All 89 offline tests pass. Two separately authorized live checks exposed an adapter bug that confused native warnings with fatal errors. That bug is corrected and covered by regression tests, but no post-fix real generation has run. Earlier attempts remain uncertain. Gallery CI also pins an older Pocket baseline. See [release evidence and blockers](PUBLICATION-CHECKLIST.md). Do not automatically repeat an uncertain attempt.
+> **Candidate 1.2.0, not a validated public release.** Three separately authorized live attempts remain uncertain. The first two exposed an adapter bug that confused native warnings with fatal errors; that bug is corrected. The third, explicitly authorized post-fix attempt reached native `exec` exit 0 and `turn.completed`, but no generation directory or valid PNG was found. Its cause is not established. No real image generation has passed for this candidate. No fourth generation ran. Gallery CI also pins an older Pocket baseline. See [release evidence and blockers](PUBLICATION-CHECKLIST.md). Do not automatically repeat an uncertain attempt.
 
 Generate product images through the installed Codex CLI and the owner's existing ChatGPT subscription. Built-in Codex image generation is documented as `gpt-image-2`; this extension requests GPT Image 2 but does not invent a remote model ID or a separate image price when the CLI does not report them.
 

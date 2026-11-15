@@ -101,11 +101,11 @@ if (process.argv.includes("--version")) {
       return;
     }
     const dir = path.join(home, "generated_images", "44444444-4444-4444-8444-444444444444");
-    fs.mkdirSync(dir, { recursive: true });
+    if (!mode.noImage) fs.mkdirSync(dir, { recursive: true });
     const ihdr = Buffer.alloc(13); ihdr.writeUInt32BE(1, 0); ihdr.writeUInt32BE(1, 4); ihdr[8] = 8; ihdr[9] = 6;
     const png = Buffer.concat([Buffer.from("89504e470d0a1a0a", "hex"), chunk("IHDR", ihdr),
       chunk("IDAT", deflateSync(Buffer.from([0, 10, 20, 30, 255]))), chunk("IEND", Buffer.alloc(0))]);
-    fs.writeFileSync(path.join(dir, "image.png"), png);
+    if (!mode.noImage) fs.writeFileSync(path.join(dir, "image.png"), png);
     process.stdout.write(JSON.stringify({ type: "thread.started", thread_id: "44444444-4444-4444-8444-444444444444" }) + "\n");
     const reroute = { type: "item.completed", item: { id: "item_0", type: "error", message: "model rerouted: gpt-6.1-sol -> gpt-fake-unapproved (FIXTURE_REROUTE_SECRET)" } };
     const warning = { type: "item.completed", item: { id: "warning_0", type: "error", message: "Configuration/deprecation warning FIXTURE_WARNING_SECRET" } };
@@ -243,6 +243,23 @@ for (const timing of ["before", "after"]) {
         assert.equal((await env.audit()).filter((record) => record.mode === "exec").length, 1);
     });
 }
+
+test("turn.completed sem PNG nativo não é sucesso e não causa retry", async (t) => {
+    const env = await setup(t, { noImage: true, warning: "before" });
+    const counters = { generating: 0, threads: [] as string[] };
+    await assert.rejects(
+        runCodexImage(options(env.agentDir, new AbortController().signal, counters)),
+        (error) => {
+            assert.ok(error instanceof Error);
+            assert.match(error.message, /Não há exatamente 1 PNG válido/);
+            assert.doesNotMatch(error.message, /FIXTURE_WARNING_SECRET/);
+            return true;
+        },
+    );
+    assert.equal(counters.generating, 1);
+    assert.deepEqual(counters.threads, [threadId]);
+    assert.equal((await env.audit()).filter((record) => record.mode === "exec").length, 1);
+});
 
 test("aviso não esconde turn.failed nem transforma PNG já escrito em sucesso", async (t) => {
     const env = await setup(t, { warning: "before", fatalAfterWarning: true });
